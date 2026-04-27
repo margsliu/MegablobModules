@@ -17,13 +17,27 @@ struct HelloSine : Module {
 		LIGHTS_LEN
 	};
 
+	float phase = 0.f;
+
 	HelloSine() {
 		config(PARAMS_LEN, INPUTS_LEN, OUTPUTS_LEN, LIGHTS_LEN);
-		configParam(FREQ_PARAM, 0.f, 1.f, 0.f, "");
-		configOutput(OUT_OUTPUT, "");
+		// Use a log scale for the knob, with the range being 20Hz-20000Hz
+		configParam(FREQ_PARAM, std::log2(20.f), std::log2(20000.f), std::log2(440.f), "Frequency", " Hz");
+		// Have the VCV Rack tooltip display in Hz
+        paramQuantities[FREQ_PARAM]->displayBase = 2.f;
+		configOutput(OUT_OUTPUT, "Sine");
 	}
 
 	void process(const ProcessArgs& args) override {
+		// Read knob as log2 value and convert back to Hz
+		float freq = std::pow(2.f, params[FREQ_PARAM].getValue());
+
+		// Advance phase
+		phase += freq * args.sampleTime;
+		if (phase >= 1.f) phase -= 1.f;
+
+		// Output sine wave (-5V to +5V)
+		outputs[OUT_OUTPUT].setVoltage(5.f * std::sin(2.f * M_PI * phase));
 	}
 };
 
@@ -38,9 +52,9 @@ struct HelloSineWidget : ModuleWidget {
 		addChild(createWidget<ScrewSilver>(Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 		addChild(createWidget<ScrewSilver>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 
-		addParam(createParamCentered<RoundBlackKnob>(mm2px(Vec(10.155, 42.406)), module, HelloSine::FREQ_PARAM));
+		addParam(createParamCentered<RoundBlackKnob>(mm2px(Vec(5.155, 37.406)), module, HelloSine::FREQ_PARAM));
 
-		addOutput(createOutputCentered<PJ301MPort>(mm2px(Vec(10.155, 89.667)), module, HelloSine::OUT_OUTPUT));
+		addOutput(createOutputCentered<PJ301MPort>(mm2px(Vec(5.155, 84.667)), module, HelloSine::OUT_OUTPUT));
 	}
 };
 
