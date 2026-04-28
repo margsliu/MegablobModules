@@ -4,6 +4,6 @@ Modules for VCV Rack 2, a virtual Eurorack modular synthesizer platform
 
 
 # HelloSine
-My first VCV Rack 2 module! It's a single sine wave generator (20Hz - 20kHz) with a frequency control knob.
+My first VCV Rack 2 module! It's a single sine wave generator with a frequency control knob (Range: 20Hz - 20kHz, Exponential).
 
-![HelloSine module in VCV Rack 2](Images/VCVRack2_HelloSine.png)
+![HelloSine module in VCV Rack 2](doc/images/HelloSine_Screenshot_VCVRack2.png)

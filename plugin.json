@@ -8,15 +8,15 @@
   "authorEmail": "voidistrysounds@gmail.com",
   "authorUrl": "https://github.com/margsliu",
   "pluginUrl": "https://github.com/margsliu/MegablobModules",
-  "manualUrl": "",
+  "manualUrl": "https://github.com/margsliu/MegablobModules",
   "sourceUrl": "https://github.com/margsliu/MegablobModules",
-  "donateUrl": "",
+  "donateUrl": "https://ko-fi.com/megablob",
   "changelogUrl": "",
   "modules": [
     {
       "slug": "HelloSine",
       "name": "HelloSine",
-      "description": "Sine wave generator with frequency control.",
+      "description": "Single sine wave generator with frequency control (20Hz - 20kHz).",
       "tags": [
         "Oscillator"
       ]
