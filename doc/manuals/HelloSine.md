@@ -1,4 +1,4 @@
-<p align="center"><img src="https://github.com/margsliu/MegablobModules/blob/main/doc/images/HelloSine_Screenshot_Module.png" height="638"></p>
+<p align="center"><img src="https://github.com/margsliu/MegablobModulesVCV/blob/main/doc/images/HelloSine_Screenshot_Module.png" height="638"></p>
 
 # HelloSine VCV Rack User Manual
 
